@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-image-cropresizer"
+  version="1.0.0">
+
+	<name>ImageCropResizer</name>
+	 
+	<description>
+		The plugin will crop/resize images natively using phonegap/cordova's plugin architecture
+	</description>
+
+	<engines>
+		<engine name="cordova" version=">=3.0.0" />
+	</engines>  
+	
+	<dependency id="cordova-plugin-file" version=">=2.0.0" />
+
+	<js-module src="www/cropresize.js" name="ImageCropResizePlugin">
+		<clobbers target="plugins.imageCropResizer" />
+	</js-module>
+
+	<!-- ios -->
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="ImageCropResizePlugin">
+				<param name="ios-package" value="ImageCropResize"/>
+			</feature>
+		</config-file>
+
+		<header-file src="src/ios/ImageCropResize.h" />
+		<source-file src="src/ios/ImageCropResize.m" />
+		
+		<header-file src="src/ios/NSData+Base64.h" />
+		<source-file src="src/ios/NSData+Base64.m" />
+
+		<header-file src="src/ios/UIImage+Scale.h" />
+		<source-file src="src/ios/UIImage+Scale.m" />
+	</platform>
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="ImageCropResizePlugin">
+				<param name="android-package" value="com.wowtv.ImageCropResizePlugin"/>
+			</feature>
+		</config-file>
+
+		<source-file src="src/Android/com/wowtv/ImageCropResizer/ImageCropResizePlugin.java" target-dir="src/com/wowtv" />
+	</platform>
+</plugin>
